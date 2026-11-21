@@ -1,0 +1,15 @@
+{
+  "name": "claude-session-band",
+  "owner": {
+    "name": "Irratzo"
+  },
+  "metadata": {
+    "description": "session-band: a two-line status band above the Claude Code prompt"
+  },
+  "plugins": [
+    {
+      "name": "session-band",
+      "source": "./"
+    }
+  ]
+}

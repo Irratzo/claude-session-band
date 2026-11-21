@@ -1,0 +1,10 @@
+{
+  "name": "session-band",
+  "version": "0.1.0",
+  "description": "Two-line status band above the Claude Code prompt: profile, model, effort, context fill, usage limits, repo, branch, worktree, git changes and the session's plan file",
+  "author": { "name": "Irratzo" },
+  "repository": "https://github.com/Irratzo/claude-session-band",
+  "license": "MIT",
+  "keywords": ["claude-code-mod", "status-line", "git", "usage-limits"],
+  "types": "./types/index.d.ts"
+}
