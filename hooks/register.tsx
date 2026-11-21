@@ -213,7 +213,23 @@ export const register: Register = on => {
     return r
   })
 
-  // /effort, /model or /config changed a setting: redraw now, not after the next reply.
+  // /effort and /model are commands, not /config rows, so config.set never sees them. Drop the
+  // last request's value (it would outrank the new setting) and take the level typed, if any;
+  // a picker's choice then shows from the saved setting on the next 30 s refresh at the latest.
+  on('command.run', async ($, e, next) => {
+    const done = await next(e)
+    if (e.command === 'effort') {
+      const typed = e.args.trim().toLowerCase()
+      step.effort = /^(low|medium|high|xhigh|max)$/.test(typed) ? typed : null
+    } else if (e.command === 'model') step.model = null
+    else return done
+    await refresh($, step).catch(() => {})
+    // ponytail: the menu may save its pick after the command resolves; re-read shortly after
+    for (const ms of [500, 2000, 5000]) $.clock.after(ms, () => refresh($, step).catch(() => {}))
+    return done
+  })
+
+  // /config changed a setting: redraw now, not after the next reply.
   on('config.set', async ($, e, next) => {
     const done = await next(e)
     await refresh($, step).catch(() => {})

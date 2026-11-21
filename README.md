@@ -22,8 +22,8 @@ updates by itself.
 - **Profile badge**: the Claude config directory the session runs under (`CLAUDE_CONFIG_DIR`,
   default `~/.claude`), without the leading dot. A profile whose name contains `personal` is
   violet, any other amber, so two profiles never look alike.
-- **Model · effort**: the model and the reasoning effort. A change with `/effort`, `/model` or
-  `/config` shows at once; otherwise the effort sent with the last request, and before the first
+- **Model · effort**: the model and the reasoning effort. A change with `/effort <level>`, `/model` or
+  `/config` shows at once (a level picked from the `/effort` menu within a few seconds); otherwise the effort sent with the last request, and before the first
   reply the `effortLevel` from your settings.
 - **ctx**: how full the context window is, as a bar and a percentage.
 - **cache**: whether the prompt cache still holds the conversation, so the next message is
